@@ -172,6 +172,8 @@ export default defineComponent({
       addFormRef.value.validate((valid: boolean) => {
         if (!valid) return
         post('/users', addForm, undefined, true)
+        getUsersList()
+        addDialogVisible.value = false
       })
     }
     // 显示修改用户对话框
@@ -184,7 +186,6 @@ export default defineComponent({
     const edit = () => {
       editFormRef.value.validate((valid: boolean) => {
         if (!valid) return
-        console.log(editForm.data)
         put(
           '/users/' + editForm.data.id,
           {
@@ -257,9 +258,6 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.el-breadcrumb {
-  margin-bottom: 30px;
-}
 .search .el-input {
   width: 400px;
   margin-right: 15px;

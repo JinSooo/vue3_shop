@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 
 import Users from '../views/Users/Users.vue'
 
+import Rights from '../views/Roles/Rights.vue'
+import Roles from '../views/Roles/Roles.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -23,6 +26,16 @@ const routes: Array<RouteRecordRaw> = [
         path: '/users',
         name: 'Users',
         component: Users,
+      },
+      {
+        path: '/rights',
+        name: 'Rights',
+        component: Rights,
+      },
+      {
+        path: '/roles',
+        name: 'Roles',
+        component: Roles,
       },
     ],
   },
