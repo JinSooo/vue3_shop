@@ -21,11 +21,13 @@ axios.interceptors.request.use(
 /**
  * 显示响应体返回的成功或错误信息
  *
- * @param res 返回的响应数据
- * @param cb  成功的回调函数
+ * @param request   请求方式
+ * @param res       返回的响应数据
+ * @param isSuccess 是否显示成功信息
+ * @param cb        成功的回调函数
  */
-export const showMsg = (res: ResResult, cb?: Function, isSuccess = false) => {
-  if (res.meta.status !== 200) return ElMessage.error(res.meta.msg)
+export const showMsg = (request: string, res: ResResult, isSuccess: boolean, cb?: Function) => {
+  if (res.meta.status < 200 && res.meta.status >= 300) return ElMessage.error(res.meta.msg)
   if (isSuccess) ElMessage.success(res.meta.msg)
   cb && cb(res.data)
 }
@@ -39,9 +41,9 @@ export const showMsg = (res: ResResult, cb?: Function, isSuccess = false) => {
  * @param isSuccess 是否显示成功信息
  */
 export const getParams = (api: string, params?: object, cb?: Function, isSuccess = false): Promise<ResResult> => {
-  return axios.get(api, params).then(
+  return axios.get(api, { params }).then(
     response => {
-      showMsg(response.data, cb, isSuccess)
+      showMsg('get', response.data, isSuccess, cb)
       return response.data
     },
     err => {
@@ -60,7 +62,7 @@ export const getParams = (api: string, params?: object, cb?: Function, isSuccess
 export const get = (api: string, cb?: Function, isSuccess = false): Promise<ResResult> => {
   return axios.get(api).then(
     response => {
-      showMsg(response.data, cb, isSuccess)
+      showMsg('get', response.data, isSuccess, cb)
       return response.data
     },
     err => {
@@ -80,7 +82,46 @@ export const get = (api: string, cb?: Function, isSuccess = false): Promise<ResR
 export const post = (api: string, params?: object, cb?: Function, isSuccess = false): Promise<ResResult> => {
   return axios.post(api, params).then(
     response => {
-      showMsg(response.data, cb, isSuccess)
+      showMsg('post', response.data, isSuccess, cb)
+      return response.data
+    },
+    err => {
+      return err
+    }
+  )
+}
+
+/**
+ * put请求
+ *
+ * @param api     请求的api
+ * @param params  请求参数
+ * @param cb      成功的回调函数
+ * @param isSuccess 是否显示成功信息
+ */
+export const put = (api: string, params?: object, cb?: Function, isSuccess = false): Promise<ResResult> => {
+  return axios.put(api, params).then(
+    response => {
+      showMsg('put', response.data, isSuccess, cb)
+      return response.data
+    },
+    err => {
+      return err
+    }
+  )
+}
+
+/**
+ * put请求
+ *
+ * @param api     请求的api
+ * @param cb      成功的回调函数
+ * @param isSuccess 是否显示成功信息
+ */
+export const remove = (api: string, cb?: Function, isSuccess = false): Promise<ResResult> => {
+  return axios.delete(api).then(
+    response => {
+      showMsg('delete', response.data, isSuccess, cb)
       return response.data
     },
     err => {
