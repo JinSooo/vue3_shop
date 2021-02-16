@@ -34,7 +34,7 @@
         <template v-slot="{ row }">
           <el-button type="primary" icon="el-icon-edit" @click="showEditDialog(row.id)"></el-button>
           <el-button type="danger" icon="el-icon-delete" @click="removed(row.id)"></el-button>
-          <el-button type="warning" icon="el-icon-setting"></el-button>
+          <el-button type="warning" icon="el-icon-setting" @click="showDealDialog(row)"></el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -93,6 +93,24 @@
         </span>
       </template>
     </el-dialog>
+    <el-dialog title="分配角色" v-model="dealDialogVisible" width="30%">
+      <div>
+        <p>当前的用户: {{ dealInfo.username }}</p>
+        <p>当前的角色: {{ dealInfo.role_name }}</p>
+        <div>
+          要选择的新角色:
+          <el-select v-model="selectedRole" placeholder="请选择">
+            <el-option v-for="role in rolesList" :key="role.id" :label="role.roleName" :value="role.id"> </el-option>
+          </el-select>
+        </div>
+      </div>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="dealDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="saveRole">确 定</el-button>
+        </span>
+      </template>
+    </el-dialog>
   </el-card>
 </template>
 
@@ -143,12 +161,23 @@ export default defineComponent({
       email: [{ required: true, message: '请输入用户邮箱', trigger: 'blur' }],
       mobile: [{ required: true, message: '请输入用户手机', trigger: 'blur' }],
     })
+    // 分配角色信息
+    const dealInfo = ref<any>({})
+    const dealDialogVisible = ref(false)
+    const selectedRole = ref()
+    const rolesList = ref<any>({})
     /* **************************************************************************************** */
     // 获取用户列表
     const getUsersList = () => {
       getParams('/users', queryInfo, (data: any) => {
         usersList.users = data.users
         total.value = data.total
+      })
+    }
+    // 获取角色列表
+    const getRolesList = () => {
+      get('/roles', (data: any) => {
+        rolesList.value = data
       })
     }
     const handleSizeChange = (val: number) => {
@@ -226,12 +255,39 @@ export default defineComponent({
     const setState = (userId: number, userState: boolean) => {
       put(`/users/${userId}/state/${userState}`, undefined, undefined, true)
     }
+    const handleChange = (value: string) => {
+      console.log(value)
+    }
+    // 显示分配角色对话框
+    const showDealDialog = async (user: any) => {
+      getRolesList()
+      dealInfo.value = user
+      dealDialogVisible.value = true
+    }
+    // 提交分配角色
+    const saveRole = () => {
+      if (!selectedRole.value) return ElMessage.error('请选中新角色')
+      put(
+        `/users/${dealInfo.value.id}/role`,
+        { rid: selectedRole.value },
+        () => {
+          getUsersList()
+          dealDialogVisible.value = false
+        },
+        true
+      )
+    }
 
     onMounted(() => {
       getUsersList()
     })
 
     return {
+      saveRole,
+      rolesList,
+      showDealDialog,
+      handleChange,
+      selectedRole,
       queryInfo,
       usersList,
       total,
@@ -252,6 +308,8 @@ export default defineComponent({
       edit,
       removed,
       setState,
+      dealDialogVisible,
+      dealInfo,
     }
   },
 })
