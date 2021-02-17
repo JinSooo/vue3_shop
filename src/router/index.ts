@@ -7,6 +7,8 @@ import Users from '../views/Users/Users.vue'
 import Rights from '../views/Roles/Rights.vue'
 import Roles from '../views/Roles/Roles.vue'
 
+import Categories from '../views/Goods/Categories.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -36,6 +38,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/roles',
         name: 'Roles',
         component: Roles,
+      },
+      {
+        path: '/categories',
+        name: 'Categories',
+        component: Categories,
       },
     ],
   },

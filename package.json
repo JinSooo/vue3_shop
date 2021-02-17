@@ -13,7 +13,8 @@
     "element-plus": "^1.0.2-beta.28",
     "element-ui": "^2.15.0",
     "vue": "^3.0.0",
-    "vue-router": "^4.0.0-0"
+    "vue-router": "^4.0.0-0",
+    "vue-table-with-tree-grid-icon": "^1.0.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.33.0",
