@@ -8,6 +8,7 @@ import Rights from '../views/Roles/Rights.vue'
 import Roles from '../views/Roles/Roles.vue'
 
 import Categories from '../views/Goods/Categories.vue'
+import Params from '../views/Goods/Params.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -43,6 +44,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/categories',
         name: 'Categories',
         component: Categories,
+      },
+      {
+        path: '/params',
+        name: 'Params',
+        component: Params,
       },
     ],
   },

@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container class="home-container">
     <!-- 头部内容 -->
     <el-header>
       <div class="content">
@@ -34,7 +34,7 @@
               :key="menuChild.id"
               :index="menuChild.path + ''"
               :route="menuChild.path"
-              @click="saveIndex(menu.path)"
+              @click="saveIndex(menuChild.path)"
             >
               <template #title>
                 <i class="el-icon-location"></i>
@@ -66,7 +66,7 @@ export default defineComponent({
     // 侧边栏宽度
     const asideWidth = ref('200px')
     // 默认激活的菜单列
-    const defaultIndex = getIndex() || ''
+    const defaultIndex = ref('')
     // 侧边栏菜单数据
     const menuList = reactive<{ menus: Array<object> }>({ menus: [] })
 
@@ -99,6 +99,8 @@ export default defineComponent({
     /* **************************************************************************************** */
     onMounted(() => {
       getMenus()
+      defaultIndex.value = getIndex() || ''
+      if (defaultIndex.value) return router.push('/' + defaultIndex.value)
     })
 
     return {
@@ -115,7 +117,7 @@ export default defineComponent({
 </script>
 
 <style lang="less" scoped>
-.el-container {
+.home-container {
   height: 100%;
 }
 .el-header {
@@ -123,6 +125,9 @@ export default defineComponent({
 }
 .el-aside {
   background: #333744;
+}
+.el-main {
+  background-color: #eaedf1;
 }
 .toggle_btn {
   width: 100%;
