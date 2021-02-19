@@ -18,3 +18,15 @@ body,
 .el-card {
   padding-bottom: 30px;
 }
+
+.el-step__title {
+  font-size: 14px;
+}
+
+.focusing:focus {
+  outline: none;
+}
+
+.el-textarea__inner {
+  height: 200px;
+}

@@ -8,4 +8,6 @@ import './assets/css/global.css'
 
 const app = createApp(App)
 installElementPlus(app)
-app.use(router).mount('#app')
+app.use(router)
+
+app.mount('#app')

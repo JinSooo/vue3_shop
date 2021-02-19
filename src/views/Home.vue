@@ -100,7 +100,6 @@ export default defineComponent({
     onMounted(() => {
       getMenus()
       defaultIndex.value = getIndex() || ''
-      if (defaultIndex.value) return router.push('/' + defaultIndex.value)
     })
 
     return {
