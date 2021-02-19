@@ -12,6 +12,8 @@ import Params from '../views/Goods/Params.vue'
 import Goods from '../views/Goods/Goods.vue'
 import Add from '../views/Goods/Add.vue'
 
+import Orders from '../views/Orders/Orders.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -61,6 +63,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/add',
         name: 'Add',
         component: Add,
+      },
+      {
+        path: '/orders',
+        name: 'Orders',
+        component: Orders,
       },
     ],
   },

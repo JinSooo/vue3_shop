@@ -73,6 +73,7 @@ import router from '@/router'
 import { get, getParams, put, remove } from '@/util/ajax'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { defineComponent, onMounted, reactive, ref } from 'vue'
+import { dateFormat } from '@/util/dateFormat'
 export default defineComponent({
   name: 'Goods',
   setup() {
@@ -100,16 +101,6 @@ export default defineComponent({
       goods_weight: [{ required: true, message: '请输入商品重量', trigger: 'blur' }],
     })
     /* **************************************************************************************** */
-    // 格式化日期
-    const dateFormat = (ms: number) => {
-      const date = new Date(ms)
-      return `${date.getFullYear()}-${(date.getMonth() + 1 + '').padStart(2, '0')}-${(date.getDate() + ' ').padStart(
-        2,
-        '0'
-      )} ${(date.getHours() + '').padStart(2, '0')}:${(date.getMinutes() + '').padStart(2, '0')}:${(
-        date.getSeconds() + ''
-      ).padStart(2, '0')}`
-    }
     // 获取商品列表
     const getGoodsList = async () => {
       const res: any = await getParams('/goods', queryInfo)

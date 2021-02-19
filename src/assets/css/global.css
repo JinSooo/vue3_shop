@@ -15,10 +15,6 @@ body,
   width: 300px;
 }
 
-.el-card {
-  padding-bottom: 30px;
-}
-
 .el-step__title {
   font-size: 14px;
 }
