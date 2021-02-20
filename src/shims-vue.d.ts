@@ -5,4 +5,4 @@ declare module '*.vue' {
   export default component
 }
 
-declare module 'vue-table-with-tree-grid-icon';
+declare module '*.js'

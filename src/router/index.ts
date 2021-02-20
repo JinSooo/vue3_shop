@@ -14,6 +14,8 @@ import Add from '../views/Goods/Add.vue'
 
 import Orders from '../views/Orders/Orders.vue'
 
+import Reports from '../views/Reports/Reports.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -68,6 +70,11 @@ const routes: Array<RouteRecordRaw> = [
         path: '/orders',
         name: 'Orders',
         component: Orders,
+      },
+      {
+        path: '/reports',
+        name: 'Reports',
+        component: Reports,
       },
     ],
   },

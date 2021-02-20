@@ -10,8 +10,10 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "echarts": "^5.0.2",
     "element-plus": "^1.0.2-beta.28",
     "element-ui": "^2.15.0",
+    "lodash": "^4.17.20",
     "vue": "^3.0.0",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^4.0.0-0",

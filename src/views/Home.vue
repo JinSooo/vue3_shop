@@ -24,7 +24,7 @@
           :collapse-transition="false"
           router
         >
-          <el-submenu v-for="menu in menuList.menus" :key="menu.id" :index="menu.path + ''">
+          <el-submenu class="submenu" v-for="menu in menuList.menus" :key="menu.id" :index="menu.path + ''">
             <template #title>
               <i class="el-icon-menu"></i>
               <span>{{ menu.authName }}</span>
@@ -152,7 +152,7 @@ export default defineComponent({
     margin-right: 10px;
   }
 }
-.el-submenu {
+.submenu {
   width: 200px;
 }
 .el-button {
