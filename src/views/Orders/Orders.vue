@@ -76,7 +76,7 @@
 </template>
 
 <script lang="ts">
-import { get, getParams } from '@/util/ajax'
+import { getParams } from '@/util/ajax'
 import { dateFormat } from '@/util/dateFormat'
 import { defineComponent, reactive, ref, onMounted } from 'vue'
 import cityData from './citydata'

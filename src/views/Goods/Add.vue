@@ -176,7 +176,7 @@ export default defineComponent({
         }
       }
     }
-    const handleRemove = (file: any, fileList: any) => {
+    const handleRemove = (file: any) => {
       const index = goodsForm.pics.findIndex((item: any) => {
         return item.pic === file.response.data.tmp_path
       })

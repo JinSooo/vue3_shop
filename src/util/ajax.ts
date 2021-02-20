@@ -2,6 +2,8 @@ import { getToken } from './session'
 import axios from 'axios'
 import { ResResult } from './type'
 import { ElMessage } from 'element-plus'
+import { start, done } from 'nprogress'
+import 'nprogress/nprogress.css'
 
 // 配置默认请求api的路径
 axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
@@ -9,9 +11,20 @@ axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
 // 设置axios的请求拦截器
 axios.interceptors.request.use(
   config => {
+    start()
     // 在请求头中添加token
     config.headers.Authorization = getToken() || ''
     return config
+  },
+  err => {
+    return err
+  }
+)
+// 设置axios的响应拦截器
+axios.interceptors.response.use(
+  response => {
+    done()
+    return response
   },
   err => {
     return err

@@ -1,20 +1,22 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import Login from '../views/Login.vue'
-import Home from '../views/Home.vue'
 
-import Users from '../views/Users/Users.vue'
+const Login = () => import(/* webpackChunkName: "login_home" */ '../views/Login.vue')
 
-import Rights from '../views/Roles/Rights.vue'
-import Roles from '../views/Roles/Roles.vue'
+const Home = () => import(/* webpackChunkName: "login_home" */ '../views/Home.vue')
 
-import Categories from '../views/Goods/Categories.vue'
-import Params from '../views/Goods/Params.vue'
-import Goods from '../views/Goods/Goods.vue'
-import Add from '../views/Goods/Add.vue'
+const Users = () => import(/* webpackChunkName: "user_right" */ '../views/Users/Users.vue')
+const Rights = () => import(/* webpackChunkName: "user_right" */ '../views/Roles/Rights.vue')
+const Roles = () => import(/* webpackChunkName: "user_right" */ '../views/Roles/Roles.vue')
 
-import Orders from '../views/Orders/Orders.vue'
+const Categories = () => import(/* webpackChunkName: "cate_params" */ '../views/Goods/Categories.vue')
+const Params = () => import(/* webpackChunkName: "cate_params" */ '../views/Goods/Params.vue')
 
-import Reports from '../views/Reports/Reports.vue'
+const Goods = () => import(/* webpackChunkName: "list_add" */ '../views/Goods/Goods.vue')
+const Add = () => import(/* webpackChunkName: "list_add" */ '../views/Goods/Add.vue')
+
+const Orders = () => import(/* webpackChunkName: "order" */ '../views/Orders/Orders.vue')
+
+const Reports = () => import(/* webpackChunkName: "report" */ '../views/Reports/Reports.vue')
 
 const routes: Array<RouteRecordRaw> = [
   {
